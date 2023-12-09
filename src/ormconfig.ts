@@ -1,14 +1,11 @@
-import { TypeOrmModuleOptions } from "@nestjs/typeorm";
+import { PostgresConnectionOptions } from "typeorm/driver/postgres/PostgresConnectionOptions";
 
-const config: TypeOrmModuleOptions = {
+const ormconfig: PostgresConnectionOptions = {
   type: "postgres",
-  host: "localhost",
-  port: 5555,
-  username: "admin",
-  password: "1234",
-  database: "mediumclone",
+  url: "postgres://admin:1234@localhost:5555/mediumclone",
   entities: [__dirname + "/**/*.entity{.ts,.js}"],
-  synchronize: true,
+  synchronize: false,
+  migrations: [__dirname + "/migrations/**/*{.ts,.js}"],
 };
 
-export default config;
+export default ormconfig;
